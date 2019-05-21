@@ -1,14 +1,14 @@
 import React from "react";
 import TodoItem from "./components/TodoItem.js";
+import todosData from "./components/todosData.js";
 
 function App() {
+
+  const todoList = todosData.map(item => <TodoItem key={item.id} item={item} />);
+
   return (
-      // render 4 checkboxes here
       <div className="todoList">
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
+        {todoList}
       </div>
     );
 }

@@ -10,10 +10,29 @@ class App extends React.Component {
 		this.state = {
 			data: todosData
 		}
+
+		this.handleChange = this.handleChange.bind(this)
+	}
+
+	handleChange(id) {
+		this.setState(prevState => {
+			const newTodoList = prevState.data.map(item => {
+				if(item.id === id) {
+				    item.completed = !item.completed
+				}
+				
+				return item
+			})
+			
+
+			return {
+				data: newTodoList
+			}
+		})
 	}
 
 	render() {
-		const todoList = this.state.data.map(item => <TodoItem key={item.id} item={item} />);
+		const todoList = this.state.data.map(item => <TodoItem key={item.id} item={item} changeHandler={this.handleChange} />);
 
 		 return (
 		     <div className="todoList">
